@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.backgroundwork.AsyncTask.AsyncTaskThread;
+import com.example.backgroundwork.ForgroundService.ForgroundServiceActivity;
 import com.example.backgroundwork.JavaThreadWithHandler.JavaThreadWithHandler;
 import com.example.backgroundwork.JobScheduler.JobSchedulerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private Button JavaThreadWithHandlerBtn, asymcTaskBtn, jobScudlerBtn;
+    private Button JavaThreadWithHandlerBtn, asymcTaskBtn, jobScudlerBtn,forgroundServiceBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         JavaThreadWithHandlerBtn = findViewById(R.id.java_thread_btn);
         asymcTaskBtn = findViewById(R.id.async_task_btn);
         jobScudlerBtn = findViewById(R.id.job_schudler_btn);
+        forgroundServiceBtn = findViewById(R.id.forground_service_btn);
 
 
         asymcTaskBtn.setOnClickListener(this);
         JavaThreadWithHandlerBtn.setOnClickListener(this);
         jobScudlerBtn.setOnClickListener(this);
+        forgroundServiceBtn.setOnClickListener(this);
     }
 
     @Override
@@ -40,7 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (v.getId() == jobScudlerBtn.getId()) {
             goToaJobSchdulerTask();
         }
+        else if (v.getId() == forgroundServiceBtn.getId())
+        {
+            goToaForgroundService();
+        }
     }
+
 
     private void goToaAsyncTask() {
         startActivity(new Intent(this, AsyncTaskThread.class));
@@ -54,5 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void goToJavaThreadWithHandler() {
         startActivity(new Intent(this, JavaThreadWithHandler.class));
+    }
+
+    private void goToaForgroundService() {
+        startActivity(new Intent(this, ForgroundServiceActivity.class));
+
     }
 }
