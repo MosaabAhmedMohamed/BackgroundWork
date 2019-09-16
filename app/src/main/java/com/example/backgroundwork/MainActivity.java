@@ -1,6 +1,7 @@
 package com.example.backgroundwork;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.JobIntentService;
 
 import android.app.job.JobScheduler;
 import android.content.Intent;
@@ -12,12 +13,13 @@ import com.example.backgroundwork.AsyncTask.AsyncTaskThread;
 import com.example.backgroundwork.ForgroundService.ForgroundServiceActivity;
 import com.example.backgroundwork.IntentService.IntentServiceActivity;
 import com.example.backgroundwork.JavaThreadWithHandler.JavaThreadWithHandler;
+import com.example.backgroundwork.JobIntentService.JobIntentServiceActivity;
 import com.example.backgroundwork.JobScheduler.JobSchedulerActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    private Button JavaThreadWithHandlerBtn, asymcTaskBtn, jobScudlerBtn, forgroundServiceBtn, intentServiceBtn;
+    private Button JavaThreadWithHandlerBtn, asymcTaskBtn, jobScudlerBtn, forgroundServiceBtn, intentServiceBtn, jobIntentServiceBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jobScudlerBtn = findViewById(R.id.job_schudler_btn);
         forgroundServiceBtn = findViewById(R.id.forground_service_btn);
         intentServiceBtn = findViewById(R.id.intent_service_btn);
+        jobIntentServiceBtn = findViewById(R.id.job_intent_service_btn);
 
 
         asymcTaskBtn.setOnClickListener(this);
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jobScudlerBtn.setOnClickListener(this);
         forgroundServiceBtn.setOnClickListener(this);
         intentServiceBtn.setOnClickListener(this);
+        jobIntentServiceBtn.setOnClickListener(this);
     }
 
     @Override
@@ -49,13 +53,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             goToaForgroundService();
         } else if (v.getId() == intentServiceBtn.getId()) {
             goToaIntentService();
+        } else if (v.getId() == jobIntentServiceBtn.getId()) {
+            goToJobIntentService();
         }
     }
-
-    private void goToaIntentService() {
-        startActivity(new Intent(this, IntentServiceActivity.class));
-    }
-
 
     private void goToaAsyncTask() {
         startActivity(new Intent(this, AsyncTaskThread.class));
@@ -73,6 +74,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void goToaForgroundService() {
         startActivity(new Intent(this, ForgroundServiceActivity.class));
+
+    }
+
+    private void goToaIntentService() {
+        startActivity(new Intent(this, IntentServiceActivity.class));
+    }
+
+    private void goToJobIntentService() {
+        startActivity(new Intent(this, JobIntentServiceActivity.class));
 
     }
 }
